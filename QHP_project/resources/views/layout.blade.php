@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/layout.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giày QHP</title>
 </head>
@@ -28,6 +29,57 @@
             </div>
         </div>
         <div class="hduoi">
+            <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo.PNG')}}" alt="LOGO"></a>
+            <nav>
+                <ul>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    {{-- @if(@isset($danhmuc))
+                        @foreach($danhmuc as $datadm)
+                            <li class="nam">
+                                <a href="{{route('XemDanhMuc.index',['id'=>$datadm->MaDanhMuc])}}">{{$datadm->TenDanhMuc}} <input type="hidden" name="_token" value="<?php echo csrf_token();?>"></a>
+                            
+                            </li>
+
+                        @endforeach
+                    @endif --}}
+                    <li class="nam">
+                        <a href="{{route('XemDanhMuc.index',['id'=>1])}}">Nam <input type="hidden" name="_token" value="<?php echo csrf_token();?>"></a>
+                        <a href="{{route('XemDanhMuc.index',['id'=>2])}}">Nữ <input type="hidden" name="_token" value="<?php echo csrf_token();?>"></a>
+                        <a href="{{route('XemDanhMuc.index',['id'=>3])}}">Trẻ em <input type="hidden" name="_token" value="<?php echo csrf_token();?>"></a>
+                    
+                    </li>
+                </ul>
+            </nav>
+            <div class="search">
+                <form action="{{route('search-products')}}" method="get">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="text" name="search" id="search" placeholder="Tìm kiếm sản phẩm...">
+                </form>
+            </div>
+            {{-- href="{{route('ThongTinCaNhan.index')}}" --}}
+            <div class="acc_cart">
+
+                <a href="{{route('giohang')}}"><i class="fa-solid fa-cart-shopping GH">
+                    @php
+                        if (session()->has('TenTaiKhoan'))
+                            $loaigio = 'GH';
+                        else
+                            $loaigio = 'cart';
+                    @endphp
+                    @if(Session($loaigio)!=null)
+                        <div class="carthover">
+                            @if(session($loaigio))
+                                @php echo count(Session::get($loaigio, array())); @endphp
+                            @endif
+                        </div>
+                    @else
+                        <div class="carthover" style="display: none"></div>
+                    @endif
+
+                </i></a>
+            </div>
+        </div>
+        <div class="hduoi sticky">
             <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo.PNG')}}" alt="LOGO"></a>
             <nav>
                 <ul>
@@ -110,5 +162,24 @@
         <div class="copyright">© Copyright QHP Store</div>
     </footer>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".sticky").hide();
+        $(window).scroll(function(){
+            if($(this).scrollTop()>1){
+                 $(".sticky").slideDown();
+            }
+             else
+                 $(".sticky").hide();
+        });
+        $(".view-more :button").mouseenter(function(){
+            $(this).addClass('borderBtn');
+        });
+        $(".view-more :button").mouseout(function(){
+            $(this).removeClass('borderBtn');
+        });
+    })
+</script>
 @yield('scripts')
 </html>

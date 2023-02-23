@@ -86,7 +86,7 @@ class Products extends Model
         // } else {
         //     return DB::select('SELECT * FROM '.$this->table.' WHERE (TenSP LIKE "%'.$key.'%")');
         // }
-
+        // cau truy van tim kiem san pham
         return DB::select("SELECT * FROM ".$this->table." WHERE (TenSP LIKE '%".$key."%') OR GiaBan = '".$key."'");
 
         //return DB::select("SELECT * FROM ".$this->table." WHERE TenSP LIKE '%$key%' OR GiaBan = '".$key."'");

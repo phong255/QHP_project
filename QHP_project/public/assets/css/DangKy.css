@@ -60,6 +60,9 @@ header{
     justify-content: space-between;
     align-items: center;
 }
+.sticky{
+    height: 20%;
+}
 .hduoi img{
     width: 50%;
     height: 100%;

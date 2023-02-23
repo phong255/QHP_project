@@ -217,3 +217,14 @@ footer p{
     top: -10%;
     right: -20%;
 }
+
+.sticky{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    height: 15%;
+    z-index: 200;
+    opacity: 0.8;
+    border-bottom: 1px black solid;
+}

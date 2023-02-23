@@ -89,7 +89,7 @@
                 </div>
                 <div class="sp-nam">
                         @if (!empty($SanPhamList))
-                            @if(count($SanPhamList) <= 5)
+                            @if(count($SanPhamList) <= 4)
                                 <div class="hang">
                                     @for($j = 0; $j < count($SanPhamList); $j++)
                                     @php if($SanPhamList[$j]->KhuyenMai != null)echo "";  @endphp
@@ -108,7 +108,7 @@
                                 </div>
                             @else
                                 <div class="hang">
-                                    @for($j = 0; $j < 5; $j++)
+                                    @for($j = 0; $j < 4; $j++)
                                     @php if($SanPhamList[$j]->KhuyenMai != null)echo "";  @endphp
                                     <div class="cot">
                                         <a href="{{route('chitiet',['id' => $SanPhamList[$j]->MaSP]) }}"><img src="{{ asset('storage/products/'.$SanPhamList[$j]->HinhAnh)}}" alt="Giay">@if($SanPhamList[$j]->KhuyenMai != null) <div class="sale">{{"-".$SanPhamList[$j]->KhuyenMai ."%"}}</div>  @endif</a>
@@ -124,7 +124,7 @@
                                     @endfor
                                 </div>
                                 <div class="hang">
-                                    @for($j = count($SanPhamList)-1; $j > 4; $j--)
+                                    @for($j = count($SanPhamList)-1; $j >= 4; $j--)
                                     @php if($SanPhamList[$j]->KhuyenMai != null)echo "";  @endphp
                                     <div class="cot">
                                         <a href="{{route('chitiet',['id' => $SanPhamList[$j]->MaSP]) }}"><img src="{{ asset('storage/products/'.$SanPhamList[$j]->HinhAnh)}}" alt="Giay">@if($SanPhamList[$j]->KhuyenMai != null) <div class="sale">{{"-".$SanPhamList[$j]->KhuyenMai ."%"}}</div>  @endif</a>
@@ -148,6 +148,7 @@
         </div>
     </div>
 @section('scripts')
+
 <script>
     function getVals(){
   // Get slider values

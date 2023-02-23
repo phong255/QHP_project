@@ -5,7 +5,12 @@
 
 
 <div class="thongbao"></div>
-    <div class="banner"><img src="{{ asset('assets/images/Image 1.png')}}" alt="banner1"></div>
+    <div class="banner">
+        <button id="next">></button>
+        <img id="banner1" src="{{ asset('assets/images/Image 1.png')}}" alt="banner1">
+        <img id="banner2" src="{{ asset('assets/images/banner1.jpg')}}" alt="banner1">
+        <img id="banner3" src="{{ asset('assets/images/banner2.png')}}" alt="banner1">
+    </div>
     <div class="content">
         <div class="title0"><p>SẢN PHẨM</p></div>
         <div class="sp-nam">
@@ -131,12 +136,46 @@
 
 @endsection
 @section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
     function logout(){
         let url = "{{ route('checkout') }}";
 
         document.location.href=url;
     }
-
+    $(document).ready(function(){
+        $(".banner").mouseenter(function(){
+            $("#next").animate({right:'100px'});
+        });
+        $(".banner").mouseleave(function(){
+            $("#next").animate({right:'50px'});
+        });
+        var count_banner = 3,
+        timmer_banner = null;
+        $('.banner #banner1').show();
+        $('.banner #banner2').hide();
+        $('.banner #banner3').hide();
+        timmer_banner = setInterval(function(){  
+        if(count_banner < 0){
+            count_banner = 3;
+        }
+        if(count_banner == 3){
+            $('.banner #banner1').fadeOut(500);
+            $('.banner #banner2').fadeIn();
+            $('.banner #banner3').fadeIn();
+        }
+        else if(count_banner == 2){
+            $('.banner #banner1').fadeIn();
+            $('.banner #banner2').fadeOut(500);
+            $('.banner #banner3').fadeIn();
+        }
+        else {
+            $('.banner #banner1').fadeIn();
+            $('.banner #banner2').fadeIn();
+            $('.banner #banner3').fadeOut(500);
+        }
+        count_banner--;
+        },2000);
+    })
 </script>
 @endsection
