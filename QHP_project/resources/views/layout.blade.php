@@ -28,7 +28,7 @@
 
             </div>
         </div>
-        <div class="hduoi">
+        <div class="hduoi slideUp">
             <a href="{{route('home')}}"><img src="{{ asset('assets/images/Logo.PNG')}}" alt="LOGO"></a>
             <nav>
                 <ul>
@@ -169,9 +169,14 @@
         $(window).scroll(function(){
             if($(this).scrollTop()>1){
                  $(".sticky").slideDown();
+                 $(".slideUp").slideUp();
             }
-             else
+             else{
                  $(".sticky").hide();
+                 $(".slideUp").slideDown();
+             }
+                
+
         });
         $(".view-more :button").mouseenter(function(){
             $(this).addClass('borderBtn');

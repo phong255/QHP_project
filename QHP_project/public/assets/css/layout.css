@@ -224,7 +224,6 @@ footer p{
     left: 0;
     background-color: white;
     height: 15%;
-    z-index: 200;
+    z-index: 1000;
     opacity: 0.8;
-    border-bottom: 1px black solid;
 }

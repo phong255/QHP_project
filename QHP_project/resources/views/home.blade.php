@@ -8,8 +8,13 @@
     <div class="banner">
         <button id="next">></button>
         <img id="banner1" src="{{ asset('assets/images/Image 1.png')}}" alt="banner1">
-        <img id="banner2" src="{{ asset('assets/images/banner1.jpg')}}" alt="banner1">
-        <img id="banner3" src="{{ asset('assets/images/banner2.png')}}" alt="banner1">
+        <img id="banner2" src="{{ asset('assets/images/banner1.jpg')}}" alt="banner2">
+        <img id="banner3" src="{{ asset('assets/images/banner2.png')}}" alt="banner3">
+        <div class="under-banner">
+            <div class="deco-banner" id="deco1"></div>
+            <div class="deco-banner" id="deco2"></div>
+            <div class="deco-banner" id="deco3"></div>
+        </div>
     </div>
     <div class="content">
         <div class="title0"><p>SẢN PHẨM</p></div>
@@ -146,35 +151,43 @@
     $(document).ready(function(){
         $(".banner").mouseenter(function(){
             $("#next").animate({right:'100px'});
+            $("#next").css("opacity",0.7);
+            $("#next").mouseenter(function(){
+                $(this).css("opacity",0.9);
+            });
+            $("#next").mouseleave(function(){
+                $(this).css("opacity",0.7);
+            });
         });
         $(".banner").mouseleave(function(){
             $("#next").animate({right:'50px'});
+            $("#next").css("opacity",0.5);
         });
-        var count_banner = 3,
+        var count_banner = 1,
         timmer_banner = null;
-        $('.banner #banner1').show();
-        $('.banner #banner2').hide();
-        $('.banner #banner3').hide();
+        $(".banner #banner1").fadeIn(500);
+        $(".banner #banner2").fadeOut(500);
+        $(".banner #banner3").fadeOut(500);
+        $('#deco1').css("background-color","white");
+        $('#deco2').css("background-color","grey");
+        $('#deco3').css("background-color","grey");
         timmer_banner = setInterval(function(){  
-        if(count_banner < 0){
-            count_banner = 3;
-        }
-        if(count_banner == 3){
-            $('.banner #banner1').fadeOut(500);
-            $('.banner #banner2').fadeIn();
-            $('.banner #banner3').fadeIn();
-        }
-        else if(count_banner == 2){
-            $('.banner #banner1').fadeIn();
-            $('.banner #banner2').fadeOut(500);
-            $('.banner #banner3').fadeIn();
-        }
-        else {
-            $('.banner #banner1').fadeIn();
-            $('.banner #banner2').fadeIn();
-            $('.banner #banner3').fadeOut(500);
-        }
-        count_banner--;
+            if(count_banner > 3){
+                count_banner = 1;
+            }
+            for(var i=1;i<=3;i++){
+                if(i==count_banner){
+                    $(".banner #banner" + i).fadeIn(500);
+                    $('#deco' + i).css("background-color","white");
+                }
+                else{
+                    $(".banner #banner" + i).fadeOut(500);
+                    $('#deco' + i).css("background-color","grey");
+                }
+                    
+            }
+            
+            count_banner++;
         },2000);
     })
 </script>
